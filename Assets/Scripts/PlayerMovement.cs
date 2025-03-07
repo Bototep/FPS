@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
 	Vector3 velocity;
 	bool isGrounded;
+	Vector3 move; // Store movement direction
 
 	void Start()
 	{
@@ -23,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
 	void Update()
 	{
+		// Keep groundCheck at player's feet, preventing issues when looking down
 		groundCheck.position = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
 
 		isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
@@ -32,11 +34,18 @@ public class PlayerMovement : MonoBehaviour
 			velocity.y = -5f;
 		}
 
-		float x = Input.GetAxis("Horizontal");
-		float z = Input.GetAxis("Vertical");
+		float x = Input.GetAxisRaw("Horizontal"); // Use GetAxisRaw for instant stop
+		float z = Input.GetAxisRaw("Vertical");
 
-		Vector3 move = Camera.transform.right * x + new Vector3(Camera.transform.forward.x, 0, Camera.transform.forward.z) * z;
-		move.Normalize();
+		if (x != 0 || z != 0)
+		{
+			move = Camera.transform.right * x + new Vector3(Camera.transform.forward.x, 0, Camera.transform.forward.z) * z;
+			move.Normalize();
+		}
+		else
+		{
+			move = Vector3.zero; // Stop instantly when no keys are pressed
+		}
 
 		characterController.Move(move * speed * Time.deltaTime);
 
