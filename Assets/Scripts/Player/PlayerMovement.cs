@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 	private CharacterController characterController;
+	private CheckpointManager checkpointManager;
 
 	public float speed = 12f;
 	public float gravity = -19.62f;
@@ -15,16 +16,22 @@ public class PlayerMovement : MonoBehaviour
 
 	Vector3 velocity;
 	bool isGrounded;
-	Vector3 move; // Store movement direction
+	Vector3 move;
 
+	[System.Obsolete]
 	void Start()
 	{
 		characterController = GetComponent<CharacterController>();
+		checkpointManager = FindObjectOfType<CheckpointManager>();
 	}
 
 	void Update()
 	{
-		// Keep groundCheck at player's feet, preventing issues when looking down
+		if (checkpointManager.IsRespawning())
+		{
+			return; 
+		}
+
 		groundCheck.position = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
 
 		isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
@@ -34,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
 			velocity.y = -5f;
 		}
 
-		float x = Input.GetAxisRaw("Horizontal"); // Use GetAxisRaw for instant stop
+		float x = Input.GetAxisRaw("Horizontal"); 
 		float z = Input.GetAxisRaw("Vertical");
 
 		if (x != 0 || z != 0)
@@ -44,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
 		}
 		else
 		{
-			move = Vector3.zero; // Stop instantly when no keys are pressed
+			move = Vector3.zero; 
 		}
 
 		characterController.Move(move * speed * Time.deltaTime);

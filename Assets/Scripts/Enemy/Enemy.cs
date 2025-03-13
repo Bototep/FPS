@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 	private Transform player; 
 	private NavMeshAgent agent;
 	private ObjectPooler objectPooler;
+	private CheckpointManager checkpointManager;
 
 	public float detectionRange = 10f; 
 	private bool isFollowingPlayer = false;
@@ -14,9 +15,8 @@ public class Enemy : MonoBehaviour
 	void Start()
 	{
 		player = GameObject.FindGameObjectWithTag("Player")?.transform;
-
+		checkpointManager = FindObjectOfType<CheckpointManager>();
 		agent = GetComponent<NavMeshAgent>();
-
 		objectPooler = FindObjectOfType<ObjectPooler>();
 
 		if (player != null)
@@ -52,6 +52,14 @@ public class Enemy : MonoBehaviour
 		if (objectPooler != null)
 		{
 			objectPooler.ReturnEnemy(gameObject);
+		}
+	}
+
+	public void OnTriggerEnter(Collider other)
+	{
+		if (other.CompareTag("Player"))
+		{
+			checkpointManager.RespawnPlayerImmediate();
 		}
 	}
 }
