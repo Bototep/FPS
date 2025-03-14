@@ -3,7 +3,12 @@ guid: d2795f525c65a7a4cbea7d3f290285d2
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Mouse_001
+    second: {fileID: 2800000, guid: a1855a9523d36564b839da4486bf7524, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -3,7 +3,12 @@ guid: 89297760aa1adf341941d9e3bb0a1e36
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Chair_001
+    second: {fileID: 2800000, guid: edeb45ba912b53b4eb44d4214f39e906, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

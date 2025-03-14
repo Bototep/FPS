@@ -3,7 +3,12 @@ guid: 499e2233bb4d3974c9cbc47f7418f1b7
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: KeyBoard_001
+    second: {fileID: 2800000, guid: e9b508ccbabf94f44ab2434be1cfc9a1, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

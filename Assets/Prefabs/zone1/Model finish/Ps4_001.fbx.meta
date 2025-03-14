@@ -3,7 +3,12 @@ guid: 3cf6d862babbab6418d46e6db898f151
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Ps4_001
+    second: {fileID: 2800000, guid: ba49ad560cc18f545a80161e9a2fdf68, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

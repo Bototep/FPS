@@ -3,7 +3,12 @@ guid: 5a4575b13dd785a40bea53b2a2d9bcee
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: DocFolderRed_004
+    second: {fileID: 2800000, guid: 0f73ad798d730b943a0f8fdf59f2fb2f, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

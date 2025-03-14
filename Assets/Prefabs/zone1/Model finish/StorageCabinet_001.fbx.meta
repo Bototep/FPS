@@ -3,7 +3,12 @@ guid: 0c99efe29b15bf24cb7c459d8cb49cf0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: StorageCabinet_001
+    second: {fileID: 2800000, guid: c5d5837c21e3afd49a9c57ffad2b2228, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

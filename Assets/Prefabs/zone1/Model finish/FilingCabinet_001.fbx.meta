@@ -3,7 +3,12 @@ guid: 1400ea494d441d642bc95ca3e65aa676
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: FilingCabinet_001
+    second: {fileID: 2800000, guid: 10e7a889bb7217540ba755d691b421b5, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

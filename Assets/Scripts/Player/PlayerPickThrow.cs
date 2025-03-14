@@ -8,10 +8,16 @@ public class PlayerPickThrow : MonoBehaviour
 	public LayerMask pickupMask;
 	private GameObject heldItem;
 	private Rigidbody heldItemRb;
+	private SoundManager soundManager;
+
+	private void Start()
+	{
+		soundManager = SoundManager.instance;
+	}
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.F))
+		if (Input.GetKeyDown(KeyCode.E))
 		{
 			if (heldItem == null)
 				TryPickUp();
@@ -60,6 +66,8 @@ public class PlayerPickThrow : MonoBehaviour
 
 	void ThrowItem()
 	{
+		soundManager.PlaySoundEffect(3);
+
 		if (heldItemRb != null)
 		{
 			heldItemRb.isKinematic = false;

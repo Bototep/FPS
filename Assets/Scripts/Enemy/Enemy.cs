@@ -3,14 +3,14 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-	private Transform player; 
+	private Transform player;
 	private NavMeshAgent agent;
 	private ObjectPooler objectPooler;
 	private CheckpointManager checkpointManager;
 
-	public float detectionRange = 10f; 
+	public float detectionRange = 10f;
 	private bool isFollowingPlayer = false;
-
+	private Vector3 initialPosition; 
 	[System.Obsolete]
 	void Start()
 	{
@@ -18,6 +18,8 @@ public class Enemy : MonoBehaviour
 		checkpointManager = FindObjectOfType<CheckpointManager>();
 		agent = GetComponent<NavMeshAgent>();
 		objectPooler = FindObjectOfType<ObjectPooler>();
+
+		initialPosition = transform.position;
 
 		if (player != null)
 		{
@@ -47,6 +49,14 @@ public class Enemy : MonoBehaviour
 		}
 	}
 
+	public void ResetEnemyPosition()
+	{
+		transform.position = initialPosition;
+		agent.Warp(initialPosition); 
+		isFollowingPlayer = false;
+		agent.SetDestination(transform.position);
+	}
+
 	public void ReturnToPool()
 	{
 		if (objectPooler != null)
@@ -55,11 +65,12 @@ public class Enemy : MonoBehaviour
 		}
 	}
 
-	public void OnTriggerEnter(Collider other)
+	void OnCollisionEnter(Collision collision)
 	{
-		if (other.CompareTag("Player"))
+		if (collision.gameObject.CompareTag("Player"))
 		{
 			checkpointManager.RespawnPlayerImmediate();
+			ResetEnemyPosition(); 
 		}
 	}
 }

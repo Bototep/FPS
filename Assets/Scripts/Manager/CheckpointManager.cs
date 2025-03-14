@@ -6,10 +6,10 @@ public class CheckpointManager : MonoBehaviour
 	public Transform[] checkpoints; 
 	private int lastCheckpointIndex = -1;
 	private Transform player;
-
+	public GameManager gameManager;
 	private bool isRespawning = false; 
 
-	void Start()
+	private void Start()
 	{
 		player = GameObject.FindGameObjectWithTag("Player")?.transform;
 	}
@@ -29,6 +29,10 @@ public class CheckpointManager : MonoBehaviour
 		{
 			player.position = checkpoints[lastCheckpointIndex].position;
 			Debug.Log("Player respawned at checkpoint: " + lastCheckpointIndex);
+			if (gameManager != null)
+			{
+				gameManager.IncrementRespawnCount();
+			}
 		}
 		else
 		{
@@ -60,6 +64,10 @@ public class CheckpointManager : MonoBehaviour
 
 		player.position = checkpoints[lastCheckpointIndex].position;
 		Debug.Log("Player respawned immediately at checkpoint: " + lastCheckpointIndex);
+		if (gameManager != null)
+		{
+			gameManager.IncrementRespawnCount();
+		}
 
 		yield return null;
 
