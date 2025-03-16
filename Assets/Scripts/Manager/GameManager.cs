@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
 	public GameObject boss;
 	public GameObject finish;
 	public Button restart;
-
+	public TMP_Text diedTxt;
 	public int respawnCount = 0;
 
 	void Start()
@@ -49,6 +50,6 @@ public class GameManager : MonoBehaviour
 	public void IncrementRespawnCount()
 	{
 		respawnCount++;
-		Debug.Log("Player Respawned. Total Respawns: " + respawnCount);
+		diedTxt.text = "DIED : " + respawnCount.ToString();
 	}
 }
